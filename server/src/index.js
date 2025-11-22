@@ -1,9 +1,12 @@
-const path = require('path')
 const dotenv = require('dotenv')
 const connectDB = require('./config/db')
 const app = require('./app')
 
-dotenv.config({ path: path.resolve(__dirname, '../.env') })
+// Load .env file only in development (Render provides env vars automatically)
+if (process.env.NODE_ENV !== 'production') {
+  const path = require('path')
+  dotenv.config({ path: path.resolve(__dirname, '../.env') })
+}
 
 const PORT = process.env.PORT || 5000
 
