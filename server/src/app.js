@@ -20,6 +20,21 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(morgan('dev'))
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Ecommerce API is running',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      auth: '/api/auth',
+      products: '/api/products',
+      orders: '/api/orders',
+    },
+  })
+})
+
 app.get('/api/health', (req, res) => {
   res.json({ success: true, message: 'API healthy' })
 })
